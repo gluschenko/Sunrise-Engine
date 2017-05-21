@@ -1,0 +1,4 @@
+function TEST()
+{
+	return ":)";
+}

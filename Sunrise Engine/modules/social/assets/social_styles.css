@@ -1,0 +1,201 @@
+/*Alexander Gluschenko (03-10-2015)*/
+
+.profile_header{
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	background-color: #e84c3d;
+	text-align: center;
+	position: relative;
+}
+
+@media screen and (max-width: 1034px) {
+    .profile_header{
+        border-radius: 0px;
+    }
+}
+
+.profile_avatar{
+	border-radius: 100%;
+	width: 140px;
+	height: 140px;
+	margin: auto;
+	background-position: center, center;
+	background-size: cover, cover;
+    background-color: #fff;
+	/*border: solid #fff 2px;*/
+}
+
+.small_profile_avatar{
+	width: 50px;
+	height: 50px;
+}
+
+.popup_profile_avatar{
+	width: 30px;
+	height: 30px;
+    border: none;
+}
+
+.content_image {
+    max-height: 100px;
+    max-width: 200px;
+    cursor: pointer;
+    margin: 5px;
+    border-radius: 3px;
+}
+
+.large_content_image {
+    max-height: 200px;
+    max-width: 45%;
+}
+
+.radial_button{
+	border-radius: 100%;
+	background-size: 100%;
+	height: 40px;
+	width: 40px;
+	position: absolute;
+}
+
+.quad_button{
+	border-radius: 1px;
+	background-size: 100%;
+	height: 25px;
+	width: 25px;
+	position: absolute;
+}
+
+.write_btn{
+	background-image: url(/modules/social/assets/pencil.png);
+}
+
+.profile_btn{
+	background-image: url(/modules/social/assets/more.png);
+}
+
+.profile_hide_btn{
+	background-image: url(/modules/social/assets/minimize.png);
+}
+
+.attach_btn{
+	background-image: url(/modules/social/assets/plus.png);
+}
+
+.edit_btn{
+	background-image: url(/modules/social/assets/pencil.png);
+}
+
+.delete_btn{
+	background-image: url(/modules/social/assets/delete.png);
+}
+
+.pinned_flag{
+	background-image: url(/modules/social/assets/topic_pinned.png);
+}
+
+.locked_flag{
+	background-image: url(/modules/social/assets/topic_locked.png);
+}
+
+/**/
+
+.board_flag{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 2px;
+    background-size: 100%;
+}
+
+/**/
+
+.notify_counter {
+    color: white;
+    font-family: Arial;
+    font-size: 15px;
+    line-height: 26px;
+    border-radius: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #333;
+    position: absolute;
+    right: 7px;
+    top: 4px;
+}
+
+.notify_box {
+    position: absolute;
+    right: -510px;
+    top: -300px;
+    width: 500px;
+    z-index: 100;
+}
+
+.popup_box {
+    width: 300px;
+    min-height: 80px;
+}
+
+.popup_area {
+    position: fixed;
+    left: 10px;
+    bottom: 0px;
+    display: inline-block;
+    z-index: 1001;
+    height: auto;
+    /**/
+    transition-property: height;
+    transition-duration: 0.2s;
+}
+
+@media screen and (max-width: 1034px) {
+    .popup_area{
+        display: none;
+    }
+}
+
+.unchecked {
+    background-color: #eee;
+}
+
+.social_sidebar{
+    width: 250px;
+    margin-right: 20px;
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
+}
+
+.social_content_wrap{
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
+}
+
+.social_sidebar_button
+{
+    display: none;
+}
+
+@media screen and (max-width: 1034px) {
+    .social_sidebar{
+        display: none;
+    }
+
+    .social_content_wrap{
+        width: 100%;
+    }
+
+    .social_sidebar_button{
+        display: block;
+        width: 50px;
+        height: 50px;
+        border-radius: 50px;
+        background-image: url(tool_menu_white.png);
+        box-shadow: 1px 1px 2px #333;
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        z-index: 40;
+    }
+}

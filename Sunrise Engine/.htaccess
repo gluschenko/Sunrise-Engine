@@ -1,0 +1,39 @@
+AddDefaultCharset UTF-8
+
+php_value upload_max_filesize 256M
+php_value post_max_size 256M
+
+<Files "*.json"> 
+	Deny from all
+</Files>
+
+<FilesMatch "\.(JPG|JPEG|PNG|GIF|jpg|jpeg|png|gif)$">
+	ErrorDocument 404 /engine/assets/no_image.png
+</FilesMatch>
+
+#Directory
+DirectoryIndex index.php
+Options -Indexes
+
+#PHP
+php_flag display_errors on
+php_flag html_errors on
+
+<FilesMatch "^[^\.]+$">
+
+#Errors
+ErrorDocument 403 /error403
+ErrorDocument 404 /error404
+
+#URL
+RewriteEngine on
+RewriteBase /
+##
+#RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+#RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+##
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)/?$ /index.php [L]
+
+</FilesMatch>
