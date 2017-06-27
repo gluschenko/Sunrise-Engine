@@ -44,8 +44,10 @@ function SessionHash($password, $token)
 	$config = GetConfig();
 	$salt = $config['admin_salt'];
 	$ua = $_SERVER['HTTP_USER_AGENT'];
+	$borwser = GetBrowser($ua);
+	$os = GetOS($ua);
 	
-	return _SHA256($password."_".$token."_".$ua."_".$salt);
+	return _SHA256($password."_".$token."_".$borwser."_".$os."_".$salt);
 }
 
 /** Возвращает пользователький ключ */
@@ -54,8 +56,10 @@ function UserSessionHash($id, $password_hash)
 	$config = GetConfig();
 	$salt = $config['salt'];
 	$ua = $_SERVER['HTTP_USER_AGENT'];
+	$borwser = GetBrowser($ua);
+	$os = GetOS($ua);
 	
-	return _SHA256($id."_".$password_hash."_".$ua."_".$salt);
+	return _SHA256($id."_".$password_hash."_".$borwser."_".$os."_".$salt);
 }
 
 /** Генерирует ключ доступа */
