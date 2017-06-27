@@ -58,6 +58,10 @@ function SetupPHP()
 	ini_set("memory_limit", "512M");
 	ini_set("max_input_time", 3600);
 	ini_set("max_execution_time", 3600);
+	
+	ini_set("opcache.enable", 1);
+	ini_set("opcache.save_comments", 1);
+	ini_set("opcache.load_comments", 1);
 }
 
 /** Настройка конфига */
@@ -1140,10 +1144,11 @@ exit();*/
 /** Возвращает функциональную структуру движка */
 function GetEngineStructure()
 {
+	/*
 	ini_set("opcache.enable", 1);
 	ini_set("opcache.save_comments", 1);
 	ini_set("opcache.load_comments", 1);
-	
+	*/
 	$all_functions = get_defined_functions();
 	$functions = $all_functions['user'];
 	
@@ -1158,7 +1163,7 @@ function GetEngineStructure()
 		//
 		$file_path = $reflection->getFileName();
 		$file_path_array = explode($_SERVER["HTTP_HOST"], $file_path);
-		$file_path = $file_path_array[1];
+		$file_path = $file_path_array[sizeof($file_path_array) - 1];
 		//
 		for($p = 0; $p < sizeof($params); $p++)
 		{
