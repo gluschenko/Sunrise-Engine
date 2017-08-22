@@ -676,6 +676,7 @@ body{
 .tooltip::after {
     font-family: Arial;
     font-size: 12px;
+    line-height: initial;
     padding: 5px;
     border-radius: 4px;
     color: #fff;

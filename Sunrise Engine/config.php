@@ -10,14 +10,14 @@ $config['domain'] = $_SERVER['HTTP_HOST'];
 //
 
 $config['mysql_host'] = "localhost"; //Палево
-$config['mysql_user'] = "user"; //Палево
-$config['mysql_password'] = "password"; //Палево
-$config['mysql_name'] = "database"; //Палево
+$config['mysql_user'] = "rzcoll_admin"; //Палево
+$config['mysql_password'] = "9gDhSGxD"; //Палево
+$config['mysql_name'] = "a72922_rzcoll"; //Палево
 
-$config['salt'] = "hgfjdgjd"; //Палево
-$config['sig_salt'] = "vbmvbmh"; //Палево
-$config['admin_salt'] = "sfdsbbtfv"; //Палево
+$config['salt'] = "N_42"; //Палево
+$config['sig_salt'] = "NM_42"; //Палево
+$config['admin_salt'] = "NDMT_42"; //Палево
 
-$config['admin_email'] = "user@gmail.com"; // Email администратора (ОБЯЗАТЕЛЬНО ИЗМЕНИТЬ НА СВОЙ)
+$config['admin_email'] = "qugluschenko@gmail.com"; // Email администратора (ОБЯЗАТЕЛЬНО ИЗМЕНИТЬ НА СВОЙ)
 
 ?>

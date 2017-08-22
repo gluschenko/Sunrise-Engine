@@ -31,7 +31,7 @@ function GetSiteSettings()
 	$default = array(
 		"admin_password" => _SHA256("123"), //Протокол
 		"admin_token" => GenerateToken("RESET_IT_IMMEDIATE"), //Протокол // 
-		"template" => "boxed_template",
+		"template" => "common",
 		"site_name" => "Site",
 		"header" => "Default Site",
 		"slogan" => "Motto",

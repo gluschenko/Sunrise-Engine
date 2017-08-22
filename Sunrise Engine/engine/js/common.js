@@ -868,13 +868,13 @@ var CodeEditor = {
                         TextEditorWrap.style.display = "block";
                         VisualEditorWrap.style.display = "none";
 
-                        Editor.field.value = CodeEditor.VisualShell.getHTML();
+                        if(CodeEditor.VisualShell.getHTML() != "")Editor.field.value = CodeEditor.VisualShell.getHTML();
                     },
                     "Визуальный", function(){
                         TextEditorWrap.style.display = "none";
                         VisualEditorWrap.style.display = "block";
 
-                        CodeEditor.VisualShell.setHTML(Editor.field.value);
+                        if(Editor.field.value != "")CodeEditor.VisualShell.setHTML(Editor.field.value);
                     },
                 ];
 

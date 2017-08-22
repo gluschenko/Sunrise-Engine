@@ -5,20 +5,21 @@ require($_SERVER['DOCUMENT_ROOT']."/config.php");
 require("engine_config.php");
 //
 $components = array(
-	"sql", // SQL
-	"database", // функции БД
-	"io", // Работа с файлами
-	//"sessions", // Сессии (не используются, кажется)
-	"secure", // Система безопасности
-	"api", // Прикладной интерфейс
-	"time", // Время
-	"layout", // Вторичные каркасы
-	"text", // Тексты
-	"search", // Поиск
+	"sql",          // SQL
+	"security",     // Безопасность
+	"database",     // Функции БД
+	"io",           // Работа с файлами
+	//"sessions",   // Сессии (не используются, кажется)
+	"secure",       // Система безопасности
+	"api",          // Прикладной интерфейс
+	"time",         // Время
+	"layout",       // Вторичные каркасы
+	"text",         // Тексты
+	"search",       // Поиск
 	
-	"sections", // Секции сайта
-	"api_methods", // Методы API
-	"text_filters", // Методы API фильтров
+	"sections",           // Секции сайта
+	"api_methods",        // Методы API
+	"text_filters",       // Методы API фильтров
 	"database_structure", // Описание структуры БД
 );
 

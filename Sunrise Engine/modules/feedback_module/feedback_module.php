@@ -35,8 +35,8 @@ AddAdminLink("/admin?act=feedback", "Обратная связь (".GetFeedbackM
 //
 
 AddMethod("feedback.send", function($params){
-	$subject = FilterText($params['subject'], "database_text");
-	$text = FilterText($params['text'], "database_text");
+	$subject = Security::String(FilterText($params['subject'], "database_text"));
+	$text = Security::String(FilterText($params['text'], "database_text"));
 	
 	if(CreateFeedbackMessage($subject, $text))
 	{
@@ -75,7 +75,7 @@ function CreateFeedbackMessage($subject, $text)
 	$user_agent = $_SERVER['HTTP_USER_AGENT'];
 	
 	$query = SQL("INSERT INTO `feedback_messages`(`id`, `date`, `ip`, `user_agent`, `subject`, `text`, `status`) 
-	VALUES ('$newid','$time','$ip','$user_agent','$subject', '$text', '0')");
+		VALUES ('$newid','$time','$ip','$user_agent','$subject', '$text', '0')");
 	//
 	return true;
 }
