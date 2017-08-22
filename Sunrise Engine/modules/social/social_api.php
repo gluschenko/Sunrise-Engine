@@ -2,10 +2,10 @@
 //Alexander Gluschenko (26-09-2015)
 
 AddMethod("social.account.register", function($params){ //Регистрация
-	$login = Security::String($params['login']);
-	$password = Security::String($params['password']);
-	$first_name = Security::String($params['first_name']);
-	$last_name = Security::String($params['last_name']);
+	$login = $params['login'];
+	$password = $params['password'];
+	$first_name = $params['first_name'];
+	$last_name = $params['last_name'];
 	//
 	return Register($login, $password, $first_name, $last_name);
 });
@@ -16,12 +16,12 @@ AddMethod("social.account.update", function($params){ //Настройки
 	{
 		$uid = GetData("user_id", 0);
 		
-		$login = Security::String($params['login']);
-		$password = Security::String($params['password']);
-		$first_name = Security::String($params['first_name']);
-		$last_name = Security::String($params['last_name']);
-		$about = Security::String($params['about']);
-		$avatar = Security::String($params['avatar']);
+		$login = $params['login'];
+		$password = $params['password'];
+		$first_name = $params['first_name'];
+		$last_name = $params['last_name'];
+		$about = $params['about'];
+		$avatar = $params['avatar'];
 		
 		return UpdateProfile($uid, $login, $password, $first_name, $last_name, $about, $avatar);
 	}
@@ -30,8 +30,8 @@ AddMethod("social.account.update", function($params){ //Настройки
 });
 
 AddMethod("social.account.login", function($params){ //Вход
-	$login = Security::String($params['login']);
-	$password = Security::String($params['password']);
+	$login = $params['login'];
+	$password = $params['password'];
 	//
 	return Login($login, $password);
 });
@@ -62,7 +62,7 @@ AddMethod("social.account.poll", function($params){ //Реал-тайм мето
 AddMethod("social.notifications.get", function($params){
 	$engine_cfg = GetEngineConfig();
 	
-	$count = Security::String($params['count']);
+	$count = $params['count'];
 	
 	$response = array(
 		"notifications_list" => "",
@@ -98,8 +98,8 @@ AddMethod("social.notifications.get", function($params){
 AddMethod("social.notifications.check", function($params){
 	$engine_cfg = GetEngineConfig();
 	
-	$id = Security::String($params['id']);
-	$sig = Security::String($params['sig']);
+	$id = $params['id'];
+	$sig = $params['sig'];
 	
 	if($engine_cfg['logged'])
 	{
@@ -170,13 +170,13 @@ AddMethod("social.post", function($params){
 	
 	if($logged && $uid != 0)
 	{
-		$recipient_type = Security::String($params['recipient_type']);
-		$recipient = Security::String($params['recipient']);
-		$text = Security::String(FilterText($params['text'], "database_text"));
+		$recipient_type = $params['recipient_type'];
+		$recipient = $params['recipient'];
+		$text = FilterText($params['text'], "database_text");
 		$attachments = $params['attachments'];
-		$sig = Security::String($params['sig']);
+		$sig = $params['sig'];
 		
-		$markup = Security::String(isset($params['markup'])? $params['markup'] : false);
+		$markup = isset($params['markup'])? $params['markup'] : false;
 		
 		if(TrueSig($sig, $uid, $recipient_type, $recipient))
 		{
@@ -262,10 +262,10 @@ AddMethod("social.posts.edit", function($params){
 	{
 		$user_id = GetData("user_id", 0);
 		
-		$id = Security::String($params['id']);
-		$text = Security::String(FilterText($params['text'], "database_text"));
-		$attachments = Security::String($params['attachments']);
-		$sig = Security::String($params['sig']);
+		$id = $params['id'];
+		$text = FilterText($params['text'], "database_text");
+		$attachments = $params['attachments'];
+		$sig = $params['sig'];
 		
 		$markup = isset($params['markup'])? $params['markup'] : false;
 		
@@ -290,8 +290,8 @@ AddMethod("social.posts.delete", function($params){
 	{
 		$user_id = GetData("user_id", 0);
 		
-		$id = Security::String($params['id']);
-		$sig = Security::String($params['sig']);
+		$id = $params['id'];
+		$sig = $params['sig'];
 		
 		if(TrueSig($sig, $user_id, $id) || $admin_logged)
 		{
@@ -308,8 +308,8 @@ AddMethod("social.posts.restore", function($params){
 	{
 		$user_id = GetData("user_id", 0);
 		
-		$id = Security::String($params['id']);
-		$sig = Security::String($params['sig']);
+		$id = $params['id'];
+		$sig = $params['sig'];
 		
 		if(TrueSig($sig, $user_id, $id) || $admin_logged)
 		{
@@ -334,8 +334,8 @@ AddMethod("social.photos.get", function($params){
 });
 
 AddMethod("social.posts.get", function($params){
-	$topic_id = Security::Int(-$params['topic_id']);
-	$offset = Security::Int($params['offset']);
+	$topic_id = -$params['topic_id'];
+	$offset = $params['offset'];
 	
 	$query = SQL("SELECT * FROM `posts` WHERE `recipient`='$topic_id' AND `recipient_type`='board' AND `status`='0' AND `id` > '$offset' ORDER BY `id` ASC");
 	
@@ -354,8 +354,8 @@ AddMethod("social.posts.get", function($params){
 });
 
 AddMethod("social.posts.chat.get", function($params){
-	$topic_id = Security::Int(-$params['topic_id']);
-	$wrapper = Security::Int($params['wrapper']);
+	$topic_id = -$params['topic_id'];
+	$wrapper = $params['wrapper'];
 	
 	$markup = "
 	<div id='".$wrapper."_scroll' style='height: 400px; overflow-y: auto; resize: vertical;'>
@@ -371,8 +371,8 @@ AddMethod("social.posts.chat.get", function($params){
 //
 
 AddMethod("social.topics.create", function($params){
-	$title = Security::String(FilterText($params['title'], "database_text"));
-	$text = Security::String(FilterText($params['text'], "database_text"));
+	$title = FilterText($params['title'], "database_text");
+	$text = FilterText($params['text'], "database_text");
 	
 	$is_valid_title = $title != "";
 	
@@ -395,7 +395,7 @@ AddMethod("social.topics.create", function($params){
 
 AddMethod("social.topics.delete", function($params){
 	
-	$id = Security::String($params['id']);
+	$id = $params['id'];
 	
 	if(isLogged())
 	{
@@ -422,8 +422,8 @@ AddMethod("social.topics.edit", function($params){
 	if(isLogged() || $is_admin_logged)
 	{
 		$user_id = GetData("user_id", 0);
-		$id = Security::String($params['id']);
-		$title = Security::String(FilterText($params['title'], "database_text"));
+		$id = $params['id'];
+		$title = FilterText($params['title'], "database_text");
 		
 		$topic = GetTopic($id);
 		
@@ -439,7 +439,7 @@ AddMethod("social.topics.edit", function($params){
 AddMethod("social.topics.pin", function($params){
 	if(isAdminLogged())
 	{
-		$id = Security::String($params['id']);
+		$id = $params['id'];
 		return PinTopic($id);
 	}
 	
@@ -449,7 +449,7 @@ AddMethod("social.topics.pin", function($params){
 AddMethod("social.topics.unpin", function($params){
 	if(isAdminLogged())
 	{
-		$id = Security::String($params['id']);
+		$id = $params['id'];
 		return UnpinTopic($id);
 	}
 	
@@ -461,7 +461,7 @@ AddMethod("social.topics.close", function($params){
 	if(isLogged() || $is_admin_logged)
 	{
 		$user_id = GetData("user_id", 0);
-		$id = Security::String($params['id']);
+		$id = $params['id'];
 		$topic = GetTopic($id);
 		
 		if($topic['owner'] == $user_id || $is_admin_logged)
@@ -478,7 +478,7 @@ AddMethod("social.topics.open", function($params){
 	if(isLogged() || $is_admin_logged)
 	{
 		$user_id = GetData("user_id", 0);
-		$id = Security::String($params['id']);
+		$id = $params['id'];
 		$topic = GetTopic($id);
 		
 		if($topic['owner'] == $user_id || $is_admin_logged)

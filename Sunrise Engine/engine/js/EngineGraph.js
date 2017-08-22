@@ -212,8 +212,6 @@ EngineGraph = {
 	DrawLine: function(A, B)
 	{
 		var ctx = EngineGraph.Context;
-		
-		ctx.beginPath();
 		ctx.moveTo(A.x, A.y);
 		ctx.lineTo(B.x, B.y);
 		ctx.lineWidth = 1;

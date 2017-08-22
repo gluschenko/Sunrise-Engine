@@ -48,10 +48,11 @@ if(true)
 					
 					if(data.response == 1)
 					{
-						if(post == 0)setTimeout(function(){ document.location = "/admin?act=news"; }, 100);
+						//if(post == 0)setTimeout(function(){ NavigateAsync("/admin?act=news", false); }, 1000);
+						/*Show("saved");
+						Hide("not_saved");*/
 						
-						//if(post == 0)setTimeout(function(){ NavigateAsync("/admin?act=news", false); }, 1000); //Перезагружаем страницу, если новость только что создана
-						
+						if(post == 0)setTimeout(function(){ NavigateAsync("/admin?act=news", false); }, 1000); //Перезагружаем страницу, если новость только что создана
 						ShowPanel("Новость успешно сохранена", 0);
 					}
 					else

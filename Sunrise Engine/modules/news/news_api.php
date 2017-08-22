@@ -1,9 +1,9 @@
 <?php
 
 AddMethod("engine.news.get", function($params){
-	$number = Security::String($params['number']);
-	$offset = Security::String($params['offset']);
-	$need_markup = Security::String(isset($params['need_markup']) ? $params['need_markup'] : 0);
+	$number = $params['number'];
+	$offset = $params['offset'];
+	$need_markup = isset($params['need_markup']) ? $params['need_markup'] : 0;
 	
 	$posts = GetNews($number, $offset);
 	
@@ -27,11 +27,11 @@ AddMethod("engine.news.get", function($params){
 });
 
 AddMethod("admin.news.create", function($params){
-	$header = Security::String($params['header']);
+	$header = $params['header'];
 	$text = $params['text'];
-	$preview_image = Security::String($params['preview_image']);
-	$category = Security::String($params['category']);
-	$author = Security::String($params['author']);
+	$preview_image = $params['preview_image'];
+	$category = $params['category'];
+	$author = $params['author'];
 	
 	if(isAdminLogged())
 	{
@@ -47,12 +47,12 @@ AddMethod("admin.news.create", function($params){
 });
 
 AddMethod("admin.news.edit", function($params){
-	$id = Security::String($params['id']);
-	$header = Security::String($params['header']);
+	$id = $params['id'];
+	$header = $params['header'];
 	$text = $params['text'];
-	$preview_image = Security::String($params['preview_image']);
-	$category = Security::String($params['category']);
-	$author = Security::String($params['author']);
+	$preview_image = $params['preview_image'];
+	$category = $params['category'];
+	$author = $params['author'];
 	
 	if(isAdminLogged())
 	{
@@ -68,7 +68,7 @@ AddMethod("admin.news.edit", function($params){
 });
 
 AddMethod("admin.news.delete", function($params){
-	$id = Security::String($params['id']);
+	$id = $params['id'];
 	
 	if(isAdminLogged())
 	{
@@ -84,7 +84,7 @@ AddMethod("admin.news.delete", function($params){
 });
 
 AddMethod("admin.news.restore", function($params){
-	$id = Security::String($params['id']);
+	$id = $params['id'];
 	
 	if(isAdminLogged())
 	{
@@ -100,7 +100,7 @@ AddMethod("admin.news.restore", function($params){
 });
 
 AddMethod("admin.news.pin", function($params){
-	$id = Security::String($params['id']);
+	$id = $params['id'];
 	
 	if(isAdminLogged())
 	{
@@ -114,7 +114,7 @@ AddMethod("admin.news.pin", function($params){
 });
 
 AddMethod("admin.news.unpin", function($params){
-	$id = Security::String($params['id']);
+	$id = $params['id'];
 	
 	if(isAdminLogged())
 	{

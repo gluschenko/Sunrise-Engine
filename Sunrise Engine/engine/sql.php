@@ -28,16 +28,6 @@ function SQLConnection()
 	return $engine_config['mysqli_connection'];
 }
 
-function GetSQLConnection()
-{
-	return SQLConnection();
-}
-
-function SQLRealEscapeString($q)
-{
-	return mysqli_real_escape_string(GetSQLConnection(), $q);
-}
-
 /** Исполняет запрос к БД */
 function SQL($sql, $trace = true)
 {
