@@ -1,8 +1,8 @@
 <?php
 //Alexander Gluschenko (15-07-2015)
-//Сюда приходит запрос из JS
+//Сюда приходит запрос из AJAX
 
-include($_SERVER['DOCUMENT_ROOT'].'/engine/engine.php');
+require(dirname(__FILE__)."/engine.php");
 
 $request = $_POST;
 if(sizeof($_POST) == 0)$request = $_REQUEST;

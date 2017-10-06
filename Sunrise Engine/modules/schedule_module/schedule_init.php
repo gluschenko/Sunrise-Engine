@@ -14,9 +14,9 @@ AddSection(array(
 	"section_dir" => "/modules/schedule_module/sections",
 ));
 //
-$sections_dir = $cfg['root']."/modules/schedule_module/sections/";
+$sections_dir = dirname(__FILE__)."/sections";
 
-AddAdminSection("schedule", "Управление расписанием", $sections_dir."admin_markup_schedule.php");
+AddAdminSection("schedule", "Управление расписанием", $sections_dir."/admin_markup_schedule.php");
 //
 AddAdminLink("/admin?act=schedule", "Управление расписанием", 0);
 AddAdminLink("/schedule", "Расписание", 0);

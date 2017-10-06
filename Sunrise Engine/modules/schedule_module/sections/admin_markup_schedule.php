@@ -141,7 +141,7 @@ if(sizeof($changes) == 0)Draw("<div class='text padding'>Расписания н
 			<td class='table_column'><div class='text'>".$created."</div></td>
 			<td class='table_column'><div class='link' style='text-align: center;' onclick='ShowSchedule(\"".$name."\", ".$schedule.");'>Просмотр</div></td>
 			<td class='table_column'>
-				<div class='link' style='text-align: center;' onclick='ShowNewGroupWindow(\"".$name."\", \"".$year."\", \"".$thumbnail."\", ".$schedule.");'>Изменить</div>
+				<div class='link' style='text-align: center;' onclick='CurrentGroupID = ".$id."; ShowNewGroupWindow(\"".$name."\", \"".$year."\", \"".$thumbnail."\", ".$schedule.");'>Изменить</div>
 			</td>
 			<td class='table_column'>
 				<div id='delete_group_".$id."' class='link' style='text-align: center; ".$delete_hide."' onclick='DeleteGroup(".$id.");'>Удалить</div>
@@ -165,11 +165,23 @@ if(sizeof($groups) == 0)Draw("<div class='text padding'>Групп нет...</di
 
 <!---->
 
+<script>
+var CurrentGroupID = 0;
+</script>
+
 <noscript id='new_group_window'>
+
+	<div id='schedule_hint_list'>
+		<div class='hint_list_body'>
+			<div class='hint_list_header fore3 text' onclick='SlideToggle("schedule_hint_list_wrap");'>Подсказки <span id='hint_list_counter' class='fore2'></span></div>
+			<div id='schedule_hint_list_wrap' class='hint_list' style='display: none;'></div>
+		</div>
+	</div>
+
 	<table style='width: 100%;'>
 		<tr>
 			<td style='width: 50%;'>
-				<input id='group_name' value='' placeholder='41 М' class='text_input big_input' style='width: 100%; display: inline-block;'>
+				<input id='group_name' value='' placeholder='31 М' class='text_input big_input' style='width: 100%; display: inline-block;'>
 			</td>
 			<td style='width: 2%;'></td>
 			<td>
@@ -207,7 +219,7 @@ if(sizeof($groups) == 0)Draw("<div class='text padding'>Групп нет...</di
 		for($p = 0; $p < $pairs; $p++)
 		{
 			Draw("
-			<input id='pair_".$d."_".$p."' value='' placeholder='".($p + 1)." пара' class='text_input' style='width: 97.5%;'>
+			<input id='pair_".$d."_".$p."' value='' placeholder='".($p + 1)." пара' class='text_input' onclick='ScheduleHintList.getList(this, CurrentGroupID);' style='width: 97.5%;'>
 			<div class='space'></div>
 			");
 		}
@@ -235,12 +247,10 @@ if(sizeof($groups) == 0)Draw("<div class='text padding'>Групп нет...</di
 	?>
 	
 	<div id='schedule_hint_list'>
-	
 		<div class='hint_list_body'>
 			<div class='hint_list_header fore3 text' onclick='SlideToggle("schedule_hint_list_wrap");'>Подсказки <span id='hint_list_counter' class='fore2'></span></div>
 			<div id='schedule_hint_list_wrap' class='hint_list' style='display: none;'></div>
 		</div>
-		
 	</div>
 	
 	<div class='title_text inner_center'>Учебный день</div>
@@ -669,6 +679,7 @@ var ScheduleHintList = {
 		
 		ScheduleHintList.currentField = field;
 		ScheduleHintList.currentGroupID = group_id;
+		
 	},
 	setFieldValue: function(hint_id, value){
 		if(ScheduleHintList.currentField != null)

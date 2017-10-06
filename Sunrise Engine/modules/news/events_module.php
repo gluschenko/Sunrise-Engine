@@ -27,9 +27,9 @@ AddSection(array(
 ));
 
 $cfg = GetConfig();
-$sections_dir = $cfg['root']."/modules/news/sections/";
+$sections_dir = dirname(__FILE__)."/sections";
 
-AddAdminSection("events", "События", $sections_dir."admin_markup_events.php");
+AddAdminSection("events", "События", $sections_dir."/admin_markup_events.php");
 //
 AddAdminLink("/admin?act=events", "События", 0);
 //

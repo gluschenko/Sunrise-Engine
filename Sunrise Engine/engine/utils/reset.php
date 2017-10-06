@@ -1,4 +1,4 @@
-<?
+<?php
 //Точка экстренного сброса пароля и токена
 //Alexander Gluschenko (10-04-2016)
 
@@ -25,19 +25,18 @@ if(isset($_REQUEST['reset_token']))
 if($state == 0)
 {
 	?>
-	<h1>Emergency reset:</h1><br/>
-	<p>Tap any link to exterminate access to Sunrise Engine</p><br/>
-	<a href='?reset_password'>Reset admin password (will be sent to email)</a><br/>
-	<a href='?reset_token'>Reset admin token (kills all sessions)</a><br/>
-	<a href='?reset_password&reset_token'>Reset password & token!</a><br/>
-	<?
+	<h1>Экстренный сброс:</h1><br/>
+	<a href='?reset_password'>Сбросить пароль (будет выслан по email)</a><br/>
+	<a href='?reset_token'>Сбросить токен (убъет все сессии)</a><br/>
+	<a href='?reset_password&reset_token'>Сбросить пароль и токен!</a><br/>
+	<?php
 }
 else
 {
 	?>
 	<h1>Successfully done!</h1><br/>
 	<a href='?'>Back</a><br/>
-	<?
+	<?php
 }
 
 ?>

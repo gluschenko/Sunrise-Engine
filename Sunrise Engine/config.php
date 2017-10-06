@@ -1,9 +1,9 @@
 <?php
 $config;
 
-$config['root'] = $_SERVER['DOCUMENT_ROOT'];
+$config['root'] = dirname(__FILE__); //$_SERVER['DOCUMENT_ROOT'];
 $config['engine_dir'] = "engine";
-$config['engine_root'] = $_SERVER['DOCUMENT_ROOT']."/".$config['engine_dir'];
+$config['engine_root'] = $config['root']."/".$config['engine_dir'];
 
 $config['domain'] = $_SERVER['HTTP_HOST'];
 

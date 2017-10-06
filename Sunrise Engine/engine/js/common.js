@@ -14,8 +14,9 @@ if(String.prototype.includes != null) // ECMA 6
 function ImageBox(src, description) {
     if (!description) description = "";
     
-    var window_width = Math.round(screen.height * 0.9);
-    if(window_width > screen.width)window_width = Math.round(screen.width * 0.9);
+    var window_width = Math.round(window.innerWidth * 0.9);
+    if(window_width < 600) window_width = 600;
+    //if(screen.height > screen.width) window_width = Math.round(screen.height * 0.9);
 
     var content = "<div style='text-align: center;'><img alt='" + description + "' src='" + src + "' style='max-width: 100%;' /></div>";
 
@@ -296,6 +297,14 @@ function ReplaceDisplayStatus(first, second) {
 
     Find(first).style.display = secondStatus;
     Find(second).style.display = firstStatus;
+}
+
+function ResizeHeight(id, ratio){
+    if(document.getElementById(id) != null)
+    {
+        var e = document.getElementById(id);
+        e.style.height = Math.round(e.clientWidth * ratio) + "px";
+    }
 }
 
 function Reload() {
@@ -868,13 +877,13 @@ var CodeEditor = {
                         TextEditorWrap.style.display = "block";
                         VisualEditorWrap.style.display = "none";
 
-                        Editor.field.value = CodeEditor.VisualShell.getHTML();
+                        if(CodeEditor.VisualShell.getHTML() != "")Editor.field.value = CodeEditor.VisualShell.getHTML();
                     },
                     "Визуальный", function(){
                         TextEditorWrap.style.display = "none";
                         VisualEditorWrap.style.display = "block";
 
-                        CodeEditor.VisualShell.setHTML(Editor.field.value);
+                        if(Editor.field.value != "")CodeEditor.VisualShell.setHTML(Editor.field.value);
                     },
                 ];
 
@@ -1302,121 +1311,3 @@ var Sunrise = {
         return Layout.isMobile();
     },
 };
-
-
-//var LastUrl = GetURL();
-
-/*function NavigateAsync(url, cut_href) { //cut_href - отрезает домен и протокол, если используется link.href
-    if (!cut_href) cut_href = false;
-    if (cut_href) url = CutHref(url);
-
-    //
-
-    LastUrl = GetURL();
-
-    var StateData = { "NavURL": url };
-
-    //history.pushState(StateData, "", url);
-    AJAXLayout.LoadSection(url, function () {
-        history.pushState(StateData, "", url);
-    });
-
-    return false;
-}*/
-
-/*window.onpopstate = function (pop) {
-    if (pop.state) {
-        AJAXLayout.LoadSection(pop.state.NavURL, function () { });
-    }
-    else {
-        //LastUrl == "" - хак для iOS (onpopstate вызывается при загрузке страницы)
-        if(LastUrl != "")AJAXLayout.LoadSection(LastUrl, function () { });
-    }
-}*/
-
-/*function LoadSection(url, callback)
-{
-    DebugLog("LoadSection", url);
-
-    ShowLoader();
-
-    ApiMethod("engine.sections.get", { url: url }, function (data) {
-        console.log(data);
-
-        HideLoader();
-
-        if(data.response) {
-            callback();
-            //
-            document.title = data.response.title;
-            window.scrollTo(0, 0);
-            //
-            var data_blocks = ["default_title", "default_box", "wide_title", "wide_box", "narrow_title", "narrow_box", "huge_title", "huge_box", "full_box", "semi_full_box"];
-            for (var i = 0; i < data_blocks.length; i++) {
-                Clear(data_blocks[i]);
-            }
-            //
-            var markup = data.response.markup;
-
-            var layout = data.response.layout;
-
-            if(layout == 0) {
-                Write("default_title", data.response.header);
-                Write("default_box", markup);
-            }
-
-            if (layout == 1) {
-                Write("wide_title", data.response.header);
-                Write("wide_box", markup);
-            }
-
-            if (layout == 2) {
-                Write("narrow_title", data.response.header);
-                Write("narrow_box", markup);
-            }
-
-            if (layout == 3) {
-                Write("huge_title", data.response.header);
-                Write("huge_box", markup);
-            }
-
-            if (layout == 4) {
-                //Write("full_title", data.response.header);
-                Write("full_box", markup);
-            }
-
-            if (layout == 5) {
-                //Write("semi_full_title", data.response.header);
-                Write("semi_full_box", markup);
-            }
-
-            ExecuteJS(markup);
-
-            //
-            SetVisibility("default_layout", layout == 0);
-            SetVisibility("wide_layout", layout == 1);
-            SetVisibility("narrow_layout", layout == 2);
-            SetVisibility("huge_layout", layout == 3);
-            SetVisibility("full_layout", layout == 4);
-            SetVisibility("semi_full_layout", layout == 5);
-            //
-            SetVisibility("scroll_top", layout != 3);
-            //
-            var title_enabled = data.response.title_wrap_enabled;
-            SetVisibility("default_title_wrap", title_enabled);
-            SetVisibility("wide_title_wrap", title_enabled);
-            SetVisibility("narrow_title_wrap", title_enabled);
-            SetVisibility("hige_title_wrap", title_enabled);
-            //
-            var header_wrap = data.response.header_wrap_type;
-            SetVisibility("empty_header_wrap", header_wrap == -1);
-            SetVisibility("no_header_wrap", header_wrap == 0);
-            SetVisibility("header_wrap", header_wrap == 1);
-            SetVisibility("admin_header_wrap", header_wrap == 2);
-        }
-
-        if(data.error) {
-
-        }
-    });
-}*/

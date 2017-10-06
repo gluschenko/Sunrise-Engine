@@ -49,11 +49,11 @@ if($section['post_id'] == 0)
 			posts_offset += posts_number;
 		}
 		
-		setInterval(function(){
+		setInterval(function()
+		{
 			if(document.location.search == '')
 			{
-				var body = Find('body');
-				var deltaScroll = body.scrollHeight - body.scrollTop - window.innerHeight;
+				var deltaScroll = body.scrollHeight - window.scrollY - window.innerHeight;
 				
 				if(deltaScroll < 400)
 				{

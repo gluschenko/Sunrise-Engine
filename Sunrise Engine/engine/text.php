@@ -50,11 +50,15 @@ function CropText($text, $limit, $end = "...")
 /** Формирует строку из паттерна и значений: StringFormat("{0}: {1}", 1, 2);*/
 function StringFormat($pattern, $s0 = "", $s1 = "", $s2 = "", $s3 = "", $s4 = "", $s5 = "", $s6 = "", $s7 = "", $s8 = "", $s9 = "")
 {
-	$strings_arr = array($s0, $s1, $s2, $s3, $s4, $s5, $s6, $s7, $s8, $s9);
-	
-	for($i = 0; $i < sizeof($strings_arr); $i++)
+	$keys = array($s0, $s1, $s2, $s3, $s4, $s5, $s6, $s7, $s8, $s9);
+	return StringFormatArray($pattern, $keys);
+}
+
+function StringFormatArray($pattern, $keys)
+{
+	for($i = 0; $i < sizeof($keys); $i++)
 	{
-		$pattern = str_replace("{".$i."}", $strings_arr[$i], $pattern);
+		$pattern = str_replace("{".$i."}", $keys[$i], $pattern);
 	}
 	
 	return $pattern;

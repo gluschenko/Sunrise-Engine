@@ -298,7 +298,7 @@ function GetNewsMarkup($row, $compact)
 		}
 		
 		$header_markup = "
-		<div class='banner anti_padding_wide n_back4' style='background-image: url(".$preview_image.");'>
+		<div class='banner anti_padding_wide n_back4' style='background-image: url(".$preview_image."); height: 240px;'>
 			".$category_markup ."
 			<div class='news_banner_content_wrap'>
 				<div class='news_banner_content'>

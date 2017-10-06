@@ -28,7 +28,7 @@ $sql_server = mysqli_get_server_info($conn);
 	<?php $inodes = GetInodes(); ?>
 	<div class='text' title='Объекты ФС'>Inodes: <? echo(StringFormat("{0}/{1} ({2}%)", $inodes['used'], $inodes['all'], round($inodes['used_rate'] * 100, 4))); ?></div>
 	
-	<div style='height: 50px;'></div>
+	<div style='height: 30px;'></div>
 	<script>
 	function MakeBackup()
 	{
@@ -50,7 +50,7 @@ $sql_server = mysqli_get_server_info($conn);
 		});
 	}
 	</script>
-	<div class='big_button' style='width: auto;' onclick='MakeBackup();'>Сделать бекап</div>
+	<div class='button fore0 border0 back3' style='width: auto;' onclick='MakeBackup();'>Сделать резервную копию</div>
 </td>
 <td style='min-width: 10px;'></td>
 <td style='width: 100%;'>

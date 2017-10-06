@@ -42,10 +42,10 @@ AddFilter("user_text", function($text){
 		array("[a]", "<a class='link' target='_blank' href='"),
 		array("[t]", "'>"),
 		array("[/a]", "</a>"),
-		array("[iframe]", "<div><iframe style='width: 90%; height: 400px; margin: 5px; border: 0;' allowfullscreen src='"),
+		array("[iframe]", "<div><iframe style='width: 90%; height: 400px; margin: 5px; border: 0;' allowfullscreen src='https://www.youtube.com"),
 		array("[/iframe]", "'></iframe></div>"),
-		array("[audio]", "<div><audio controls src='"),
-		array("[/audio]", "'></audio></div>"),
+		/*array("[audio]", "<div><audio controls src='"),
+		array("[/audio]", "'></audio></div>"),*/
 	);
 	
 	for($i = 0; $i < sizeof($keys); $i++)
@@ -107,15 +107,45 @@ AddFilter("html", function($text){
 	
 	$separators = array(
 		"<image_c>", "</image_c>", "<img class='post_image' alt='' src='/engine/utils/compress_image.php?i={0}&width=400' onclick='ImageBox(\"{0}\");'/>",
-		"<big_image_c>", "</big_image_c>", "<img class='big_post_image' alt='' src='/engine/utils/compress_image.php?i={0}&width=400' onclick='ImageBox(\"{0}\");'/>",
 		"<small_image_c>", "</small_image_c>", "<img class='small_post_image' alt='' src='/engine/utils/compress_image.php?i={0}&width=400' onclick='ImageBox(\"{0}\");'/>",
+		"<big_image_c>", "</big_image_c>", "<img class='big_post_image' alt='' src='/engine/utils/compress_image.php?i={0}&width=400' onclick='ImageBox(\"{0}\");'/>",
+		"<large_image_c>", "</large_image_c>", "<img class='large_post_image' alt='' src='/engine/utils/compress_image.php?i={0}&width=400' onclick='ImageBox(\"{0}\");'/>",
+		"<wide_image_c>", "</wide_image_c>", "<img class='wide_post_image' alt='' src='/engine/utils/compress_image.php?i={0}&width=400' onclick='ImageBox(\"{0}\");'/>",
 		
-		"<image>", "</image>", "<img class='post_image' alt='' src='{0}' onclick='ImageBox(\"{0}\");'/>",
-		"<big_image>", "</big_image>", "<img class='big_post_image' alt='' src='{0}' onclick='ImageBox(\"{0}\");'/>",
-		"<small_image>", "</small_image>", "<img class='small_post_image' alt='' src='{0}' onclick='ImageBox(\"{0}\");'/>",
+		"<image>", "</image>", "<img class='post_image' alt='' src='{0}' onclick='ImageBox(this.src);'/>",
+		"<small_image>", "</small_image>", "<img class='small_post_image' alt='' src='{0}' onclick='ImageBox(this.src);'/>",
+		"<big_image>", "</big_image>", "<img class='big_post_image' alt='' src='{0}' onclick='ImageBox(this.src);'/>",
+		"<large_image>", "</large_image>", "<img class='large_post_image' alt='' src='{0}' onclick='ImageBox(this.src);'/>",
+		"<wide_image>", "</wide_image>", "<img class='wide_post_image' alt='' src='{0}' onclick='ImageBox(this.src);'/>",
+		
+		"<banner>", "</banner>", "<div id='b_{random}' class='banner anti_padding_wide' style='background-image: url({0});' onclick='ImageBox(\"{0}\");'></div>
+									<script>var f= function(e){ ResizeHeight('b_{random}', 250/800); }; window.addEventListener('resize', f); setTimeout(f, 10);</script>",
+		"<small_banner>", "</small_banner>", "<div id='b_{random}' class='small_banner anti_padding_wide' style='background-image: url({0});' onclick='ImageBox(\"{0}\");'></div>
+									<script>var f= function(e){ ResizeHeight('b_{random}', 100/800); }; window.addEventListener('resize', f); setTimeout(f, 10);</script>",
+		"<middle_banner>", "</middle_banner>", "<div id='b_{random}' class='middle_banner anti_padding_wide' style='background-image: url({0});' onclick='ImageBox(\"{0}\");'></div>
+									<script>var f= function(e){ ResizeHeight('b_{random}', 200/800); }; window.addEventListener('resize', f); setTimeout(f, 10);</script>",
+		"<big_banner>", "</big_banner>", "<div id='b_{random}' class='big_banner anti_padding_wide' style='background-image: url({0});' onclick='ImageBox(\"{0}\");'></div>
+									<script>var f= function(e){ ResizeHeight('b_{random}', 360/800); }; window.addEventListener('resize', f); setTimeout(f, 10);</script>",
 		
 		"<center>", "</center>", "<div style='text-align: center;'>{0}</div>",
-		"<link>", "</link>", "<a class='link' href='{0}' target='_blank'>{0}</a>",
+		"<link>", "</link>", "<a class='link' href='{0}' target='_blank'>{1}</a>",
+		"<inner_link>", "</inner_link>", "<a class='link' href='{0}' async>{1}</a>",
+		
+		"<header>", "</header>", "<div></div>
+								  <div class='text header_underline'>{0}</div>
+								  <div class='divider'></div>
+								  <div class='space'></div>",
+								  
+		"<text>", "</text>", "<div class='text'>{0}</div>",
+		"<small_text>", "</small_text>", "<div class='small_text'>{0}</div>",
+		"<tiny_text>", "</tiny_text>", "<div class='mini_text'>{0}</div>",
+		"<big_text>", "</big_text>", "<div class='title_text'>{0}</div>",
+		"<huge_text>", "</huge_text>", "<div class='logo_text'>{0}</div>",
+		
+		"<embed_iframe>", "</embed_iframe>", "<iframe style='width: 85%; height: 460px; border: none; border-radius: 5px; resize: vertical;' allowfullscreen src='{0}'></iframe>",
+		"<embed_audio>", "</embed_audio>", "<div><audio controls src='{0}'></audio></div>",
+		
+		"<youtube>", "</youtube>", "<iframe style='width: 85%; height: 460px; border: none; border-radius: 5px; resize: vertical;' allowfullscreen src='https://www.youtube.com/embed/{0}'></iframe>",
 	);
 	
 	for($i = 0; $i < sizeof($separators); $i += 3)
@@ -129,9 +159,24 @@ AddFilter("html", function($text){
 		for($c = 1; $c < sizeof($primary_text_array); $c++)
 		{
 			$secondary_text_array = explode($second_key, $primary_text_array[$c]);
-			$secondary_text_array[0] = StringFormat($markup, $secondary_text_array[0]);
-			
-			$primary_text_array[$c] = implode("", $secondary_text_array);
+			if(sizeof($secondary_text_array) > 0)
+			{
+				$rand = rand(1000, 10000000);
+				
+				$entry = $secondary_text_array[0];
+				$entry_array = explode("|", $entry);
+				
+				for($e = 0; $e < 16; $e++)
+				{
+					if(!isset($entry_array[$e])) $entry_array[$e] = $entry_array[0];
+				}
+				
+				$markup = str_replace("{random}", $rand, $markup);
+				
+				$secondary_text_array[0] = StringFormatArray($markup, $entry_array);
+				
+				$primary_text_array[$c] = implode("", $secondary_text_array);
+			}
 		}
 		
 		$text = implode("", $primary_text_array);
@@ -142,7 +187,7 @@ AddFilter("html", function($text){
 	$assocs = array(
 		"[b]", "<b>",
 		"[/b]", "</b>",
-		"[i]", "<i>",
+		/*"[i]", "<i>",
 		"[/i]", "</i>",
 		"[u]", "<u>",
 		"[/u]", "</u>",
@@ -151,7 +196,7 @@ AddFilter("html", function($text){
 		"[h1]", "<span class='title_text'>",
 		"[/h1]", "</span>",
 		"[h2]", "<span class='logo_text'>",
-		"[/h2]", "</span>",
+		"[/h2]", "</span>",*/
 		
 		"[img]", "<img class='post_image' alt='' src='",
 		"[img_150]", "<img class='post_image' alt='' onclick='ImageBox(this.src);' src='",
@@ -161,20 +206,25 @@ AddFilter("html", function($text){
 		"[/img]", "' />",
 		
 		"[br]", "</br>",
-		"[divider]", "<div class='space'></div><div class='divider'></div><div class='space'></div>",
+		/*"[divider]", "<div class='space'></div><div class='divider'></div><div class='space'></div>",
 		"[tab]", "<span style='width: 15px; display: inline-block;'></span>",
 		"[div]", "<div class='space'></div><div class='divider'></div><div class='space'></div>",
-		"[space]", "<div class='space'></div>",
-		"[link]", "<a class='link' href='",
+		"[space]", "<div class='space'></div>",*/
+		/*"[link]", "<a class='link' href='",
 		"[t]", "'>",
 		"[/link]", "</a>",
 		"[button]", "<a class='button back4' href='",
 		"[t]", "'>",
-		"[/button]", "</a>",
-		"[iframe]", "<iframe style='width: 85%; height: 500px; border: none; border-radius: 5px;' allowfullscreen src='",
+		"[/button]", "</a>",*/
+		/*"[iframe]", "<iframe style='width: 85%; height: 500px; border: none; border-radius: 5px;' allowfullscreen src='",
 		"[/iframe]", "'></iframe>",
-		"[center]", "<div style='text-align: center;'>",
-		"[/center]", "</div>",
+		"[audio]", "<div><audio controls src='",
+		"[/audio]", "'></audio></div>",*/
+		/*"[center]", "<div style='text-align: center;'>",
+		"[/center]", "</div>",*/
+		
+		"<space/>", "<div class='space'></div>",
+		"<big_space/>", "<div class='big_space'></div>",
 	);
 	
 	for($i = 0; $i < sizeof($assocs); $i += 2)
@@ -221,7 +271,7 @@ AddFilter("translit", function($text){
 		"Ы", "Y", "ы", "y",
 		"Ъ", "", "ъ", "",
 		"Э", "E", "э", "e",
-		"Ю", "YU", "ю", "yu",
+		"Ю", "IU", "ю", "iu",
 		"Я", "YA", "я", "ya",
 	);
 	

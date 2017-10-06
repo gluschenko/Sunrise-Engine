@@ -4,7 +4,7 @@ InitNews();
 function InitNews()
 {
 	$cfg = GetConfig();
-	$sections_dir = $cfg['root']."/modules/news/sections";
+	$sections_dir = dirname(__FILE__)."/sections";
 	
 	AddAdminSection("news", "Новости", $sections_dir."/admin_markup_news.php");
 	AddAdminSection("edit_news", "Редактирование новости", $sections_dir."/admin_markup_edit_news.php");

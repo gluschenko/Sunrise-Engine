@@ -11,7 +11,7 @@ $settings = GetSiteSettings();
 function SaveSiteSettings()
 {
 	var params = {
-		admin_password: Find("admin_password").value,
+		admin_password: Find("settings_admin_password").value,
 		admin_token: Find("admin_token").value,
 		template: Find("template").value,
 		site_name: Find("site_name").value,
@@ -158,7 +158,9 @@ function SaveSiteSettings()
 	
 	<div class='title_text'>Пароль администратора <span title='Остявьте поле пустым, если не хотите менять пароль'>[?]</span></div>
 	<div class='space'></div>
-	<input id='admin_password' type='password' class='text_input' style='width: 98%;'/>
+	<input id='settings_admin_password' type='password' class='text_input' style='width: 98%;'/>
+	<div class='space'></div>
+	<div class='mini_text fore6'>E-mail для сброса пароля: <?php echo($config['admin_email']); ?> (admin_email в config.php)</div>
 	<div class='space'></div>
 	
 	<div class='big_space'></div>

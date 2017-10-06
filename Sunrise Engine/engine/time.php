@@ -348,4 +348,32 @@ function MonthByNumberGenitive($num)
 	else return "Invalid month";
 }
 
+/**/
+
+function isToday($time, $relative_time = 0)
+{
+	if($relative_time == 0) $relative_time = time();
+	$RD = date("j", $relative_time);
+	$RM = date("n", $relative_time);
+	$RY = date("Y", $relative_time);
+	
+	$D = date("j", $time);
+	$M = date("n", $time);
+	$Y = date("Y", $time);
+	
+	return $RD == $D && $RM == $M && $RY == $Y;
+}
+
+function isYesterday($time, $relative_time = 0)
+{
+	if($relative_time == 0) $relative_time = time();
+	return isToday($time, $relative_time - (24 * 60 * 60));
+}
+
+function isTomorrow($time, $relative_time = 0)
+{
+	if($relative_time == 0) $relative_time = time();
+	return isToday($time, $relative_time + (24 * 60 * 60));
+}
+
 ?>

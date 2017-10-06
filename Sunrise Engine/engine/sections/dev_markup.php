@@ -116,7 +116,7 @@ body
 <script>
 
 addEventListener("scroll", function(e){ 
-	var scroll = document.body.scrollTop;
+	var scroll = window.scrollY;
 	
 	if(Exists("dev_header") && Exists("dev_nav_bar") && Exists("dev_nav_bar_subwrap"))
 	{
@@ -264,7 +264,7 @@ function ScrollToFeature(obj, id)
 		<script>
 		var EngineStructire = <?php echo(ToJSON(GetEngineStructure())); ?>;
 
-		AJAX.LoadScript("/engine/js/EngineGraph.js", function(){
+		AJAX.LoadScript("/engine/js/engine_graph.js", function(){
 			EngineGraph.Init("EngineGraph", EngineStructire);
 			
 			window.addEventListener("resize", function(e){

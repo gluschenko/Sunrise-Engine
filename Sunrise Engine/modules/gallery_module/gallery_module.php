@@ -28,16 +28,16 @@ AddSection(array(
 	"section_dir" => "/modules/gallery_module/sections",
 ));
 //
-$sections_dir = $cfg['root']."/modules/gallery_module/sections/";
+$sections_dir = dirname(__FILE__)."/sections";
 
-AddAdminSection("gallery", "Управление галереей", $sections_dir."admin_markup_gallery.php");
+AddAdminSection("gallery", "Управление галереей", $sections_dir."/admin_markup_gallery.php");
 //
 AddAdminLink("/admin?act=gallery", "Управление галереей", 0);
 //
 
 AddMethod("gallery.photo.add", function($params){
-	$photo = $params['photo'];
-	$description = FilterText($params['description'], "database_text");
+	$photo = Security::String($params['photo']);
+	$description = Security::String(FilterText($params['description'], "database_text"));
 	
 	if(isAdminLogged())
 	{
@@ -52,9 +52,9 @@ AddMethod("gallery.photo.add", function($params){
 });
 
 AddMethod("gallery.photo.edit", function($params){
-	$id = $params['id'];
-	$photo = $params['photo'];
-	$description = FilterText($params['description'], "database_text");
+	$id = Security::String($params['id']);
+	$photo = Security::String($params['photo']);
+	$description = Security::String(FilterText($params['description'], "database_text"));
 	
 	if(isAdminLogged())
 	{
@@ -69,7 +69,7 @@ AddMethod("gallery.photo.edit", function($params){
 });
 
 AddMethod("gallery.photo.delete", function($params){
-	$id = $params['id'];
+	$id = Security::String($params['id']);
 	
 	if(isAdminLogged())
 	{
@@ -84,7 +84,7 @@ AddMethod("gallery.photo.delete", function($params){
 });
 
 AddMethod("gallery.photo.view", function($params){
-	$id = $params['id'];
+	$id = Security::String($params['id']);
 	
 	AddViewsToGalleryPhoto($id);
 	

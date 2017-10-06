@@ -39,21 +39,6 @@ AddMarkup("body_footer_markup", "
 		<div class='space'></div>
 		
 		".GraphMarkup(0, "all", 30, "{random}")."
-		
-		".
-		($admin_logged? 
-		"<div class='space'></div>
-		<div class='line'></div>
-		<div class='space'></div>
-		
-		<div style='text-align: center;'>
-			<!--Yandex-->
-			<a href='https://metrika.yandex.ru/stat/?id=29931789&amp;from=informer'
-				target='_blank' rel='nofollow'><img src='//bs.yandex.ru/informer/29931789/3_1_FFFFFFFF_FFFFFFFF_0_pageviews'
-				style='width:88px; height:31px; border:0;' title='Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)' 
-				onclick='try{Ya.Metrika.informer({i:this,id:29931789,lang:\"ru\"}); return false; }catch(e){console.log(e);}'/></a>
-		</div>" : "").
-		"
 	</div>
 </div>
 ");

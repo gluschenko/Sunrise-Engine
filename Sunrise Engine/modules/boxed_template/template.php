@@ -51,6 +51,8 @@ _(____nm_______ /____\____
 	
 	<script type="text/javascript" src="/engine/js/common.js"></script>
 	<script type="text/javascript" src="/modules/boxed_template/js/site.js"></script>
+	<script type="text/javascript" src="/modules/boxed_template/js/LinesX.js"></script>
+	
 	<!--Упразднено: <script type="text/javascript" async src="/engine/node.php"></script>-->
 	
 	<!--Автоматический вывод-->
@@ -99,7 +101,7 @@ _(____nm_______ /____\____
 	<!--Body-->
 	
 	<div id='body_wrap'>
-		<div id='scroll_top' class='totop' style='display: <?php Draw(isTrue($section['layout'] != 3, "block", "none"));?>;' onclick='ScrollTo("scroll_top");'></div>
+		<div id='scroll_top' class='totop' style='display: <?php Draw(isTrue($section['layout'] != 3, "block", "none"));?>;' onclick='scrollToTop(500);'></div>
 		
 		<div id='header_wrap' style='display: <?php Draw(isTrue($section['header_wrap_type'] == 1, "block", "none"));?>;'>
 			<? Draw(GetPinnedNews(Markup("pin_markup"))); ?>
@@ -107,19 +109,20 @@ _(____nm_______ /____\____
 			<div>
 				<div style="height: 1px;"></div>
 				<div class='head_box inner_center'>
-					<div class='space'></div>
-					<a href='/' onclick='return NavAsync(this.href, true);' style='margin: auto; display: inline-block;'>
-						<div class='logo'></div>
-						<div class='header_text fore3 logo_text pointer' title='<? echo $settings['slogan']; ?>'><?php echo($settings['header']);?></div>
-					</a>
-					<div class='space'></div>
 					
-					<div style='position: absolute; right: 10px; bottom: 40px;'>
-						<a href='//vk.com/rzcoll' target="_blank" class='button header_button vk_button' style='display: inline-block;'></a>
-						<a href='/board' onclick='return NavAsync(this.href, true);' class='button header_button board_button back4' style='display: inline-block;'>Обсуждения</a>
+					<div id='LinesXParent'>
+						<canvas id='LinesX' width='100' height='100'></canvas>
 					</div>
 					
-					<div class='main_menu'>
+					<div style='position: relative; z-index: 2;'>
+						<div style='height: 100px;'></div>
+						<a href='/' onclick='return NavAsync(this.href, true);' style='margin: auto; display: inline-block;'>
+							<div class='header_text fore3 logo_text pointer' title='<? echo $settings['slogan']; ?>'><?php echo($settings['header']);?></div>
+						</a>
+						<div style='height: 100px;'></div>
+					</div>
+					
+					<!--<div class='main_menu'>
 						<div class='tool_menu_button' style='top: 0px; left: 0px;' onclick='ShowSideMenu("left_sidebar_wrap");'></div>
 						<div class='header_tool_menu_button' style='top: 0px; right: 0px;' onclick='ShowSideMenu("header_menu_wrap");'></div>
 						<div style='margin: auto; text-align: center;'>
@@ -146,8 +149,12 @@ _(____nm_______ /____\____
 							Hide(id + "_back", "");
 						}
 						</script>
-					</div>
+					</div>-->
 				</div>
+				
+				<script>
+				LinesX.Init("LinesX", "LinesXParent");
+				</script>
 			</div>
 		</div>
 		
@@ -256,35 +263,6 @@ _(____nm_______ /____\____
 			</div>
 		</div>
 	</div>
-
-	<!-- Yandex.Metrika counter -->
-	<script type="text/javascript">
-	(function (d, w, c) {
-		(w[c] = w[c] || []).push(function() {
-			try {
-				w.yaCounter29931789 = new Ya.Metrika({id:29931789,
-					webvisor:true,
-					clickmap:true,
-					trackLinks:true,
-					accurateTrackBounce:true});
-			} catch(e) { }
-		});
-		
-		var n = d.getElementsByTagName("script")[0],
-			s = d.createElement("script"),
-			f = function () { n.parentNode.insertBefore(s, n); };
-		s.type = "text/javascript";
-		s.async = true;
-		s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
-		
-		if (w.opera == "[object Opera]") {
-			d.addEventListener("DOMContentLoaded", f, false);
-		} else { f(); }
-	})(document, window, "yandex_metrika_callbacks");
-	</script>
-	<noscript>
-		<div><img src="//mc.yandex.ru/watch/29931789" style="position:absolute; left:-9999px;" alt="" /></div>
-	</noscript>
-	<!-- /Yandex.Metrika counter -->
+	
 </body>
 </html>

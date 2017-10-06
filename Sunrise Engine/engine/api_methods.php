@@ -4,7 +4,7 @@
 //Навигация
 
 AddMethod("engine.sections.get", function($params){
-	$URL = $params['url'];
+	$URL = Security::String($params['url']);
 	
 	$settings = GetSiteSettings();
 	$section = GetSection($URL, $settings);
@@ -17,9 +17,9 @@ AddMethod("engine.sections.get", function($params){
 //Сатистика
 
 AddMethod("engine.sections.stats", function($params){
-	$section = $params['section'];
-	$days = $params['days'];
-	$sig = $params['sig'];
+	$section = Security::String($params['section']);
+	$days = Security::Int($params['days']);
+	$sig = Security::String($params['sig']);
 	
 	if(TrueSig($sig, $section, $days))
 	{
@@ -32,7 +32,7 @@ AddMethod("engine.sections.stats", function($params){
 //Авторизация администратора
 
 AddMethod("admin.auth", function($params){
-	$password = $params['password'];
+	$password = Security::String($params['password']);
 	
 	if(AdminAuth($password))
 	{
@@ -71,7 +71,7 @@ AddMethod("admin.settings.save", function($params){
 });
 
 AddMethod("admin.modules.disable", function($params){
-	$module_name = $params['module'];
+	$module_name = Security::String($params['module']);
 	
 	if(isAdminLogged())
 	{
@@ -91,7 +91,7 @@ AddMethod("admin.modules.disable", function($params){
 });
 
 AddMethod("admin.modules.enable", function($params){
-	$module_name = $params['module'];
+	$module_name = Security::String($params['module']);
 	
 	if(isAdminLogged())
 	{
@@ -118,8 +118,8 @@ AddMethod("admin.modules.enable", function($params){
 AddMethod("admin.log.send", function($params){
 	if(isAdminLogged())
 	{
-		$text = $params['text'];
-		$need_markup = $params['need_markup'];
+		$text = Security::String($params['text']);
+		$need_markup = Security::Int($params['need_markup']);
 		
 		$id = LogAction($text, 2);
 		//
@@ -136,49 +136,57 @@ AddMethod("admin.log.send", function($params){
 //Страницы
 
 AddMethod("admin.pages.save", function($params){
+	$page_name = Security::String($params['data']['name']);
+	
 	if(isAdminLogged())
 	{
 		CreateOrEditPage($params['data'], $params['markup']);
 		
-		LogAction("Сохранена страница с идентификатором → ".$params['data']['name'], 0);
+		LogAction("Сохранена страница с идентификатором → ".$page_name, 0);
 		return 1;
 	}
 	
-	LogAction("Неудачная попытка затронуть страницу → ".$params['data']['name'], 1);
+	LogAction("Неудачная попытка затронуть страницу → ".$page_name, 1);
 	return 0;
 });
 
 AddMethod("admin.pages.delete", function($params){
+	$page = Security::String($params['page']);
+	
 	if(isAdminLogged())
 	{
 		DeletePage($params['page']);
 		
-		LogAction("Удалена страница с идентификатором → ".$params['page'], 0);
+		LogAction("Удалена страница с идентификатором → ".$page, 0);
 		return 1;
 	}
 	
-	LogAction("Неудачная попытка удалить страницу с идентификатором → ".$params['page'], 1);
+	LogAction("Неудачная попытка удалить страницу с идентификатором → ".$page, 1);
 	return 0;
 });
 
 //Бары
 
 AddMethod("admin.bars.save", function($params){
+	$id = Security::String($params['id']);
+	
 	if(isAdminLogged())
 	{
 		CreateOrEditBar($params);
 		
-		LogAction("Сохранен бар с идентификатором → ".$params['id'], 0);
+		LogAction("Сохранен бар с идентификатором → ".$id, 0);
 		return 1;
 	}
 	
-	LogAction("Неудачная попытка затронуть бар с идентификатором → ".$params['id'], 1);
+	LogAction("Неудачная попытка затронуть бар с идентификатором → ".$id, 1);
 	return 0;
 });
 
 //Шаблонные вставки
 
 AddMethod("admin.templates.save", function($params){
+	$template = Security::String($params['template']);
+	
 	if(isAdminLogged())
 	{
 		$id = $params['template'];
@@ -188,25 +196,26 @@ AddMethod("admin.templates.save", function($params){
 		//
 		CreateOrEditTemplate($id, $data);
 		
-		LogAction("Сохранен шаблон с идентификатором → $".$params['template']."$", 0);
+		LogAction("Сохранен шаблон с идентификатором → $".$template."$", 0);
 		return 1;
 	}
 	
-	LogAction("Неудачная попытка затронуть шаблон с идентификатором → $".$params['template']."$", 1);
+	LogAction("Неудачная попытка затронуть шаблон с идентификатором → $".$template."$", 1);
 	return 0;
 });
 
 AddMethod("admin.bars.delete", function($params){
+	$id = Security::String($params['id']);
+	
 	if(isAdminLogged())
 	{
-		$id = $params['id'];
 		DeleteBar($id);
 		
-		LogAction("Удален бар с идентификатором → ".$params['id'], 0);
+		LogAction("Удален бар с идентификатором → ".$id, 0);
 		return 1;
 	}
 	
-	LogAction("Неудачная попытка удалить бар с идентификатором → ".$params['id'], 1);
+	LogAction("Неудачная попытка удалить бар с идентификатором → ".$id, 1);
 	return 0;
 });
 
@@ -224,36 +233,41 @@ AddMethod("admin.templates.get", function($params){
 });
 
 AddMethod("admin.templates.delete", function($params){
+	$template = Security::String($params['template']);
+	
 	if(isAdminLogged())
 	{
-		$template = $params['template'];
 		DeleteTemplate($template);
 		
-		LogAction("Удален шаблон с идентификатором → $".$params['template']."$", 0);
+		LogAction("Удален шаблон с идентификатором → $".$template."$", 0);
 		return 1;
 	}
 	
-	LogAction("Неудачная попытка удалить шаблон с идентификатором → $".$params['template']."$", 1);
+	LogAction("Неудачная попытка удалить шаблон с идентификатором → $".$template."$", 1);
 	return 0;
 });
 
 //
 
 AddMethod("admin.files.delete", function($params){
+	$file = Security::String($params['file']);
+	
 	if(isAdminLogged())
 	{
 		$config = GetConfig();
-		DeleteFile($config['root']."/files/".$params['file']);
+		DeleteFile($config['root']."/files/".$file);
 		
-		LogAction("Удален файл → ".$params['file'], 0);
+		LogAction("Удален файл → ".$file, 0);
 		return 1;
 	}
 	
-	LogAction("Неудачная попытка удалить файл → ".$params['file'], 1);
+	LogAction("Неудачная попытка удалить файл → ".$file, 1);
 	return 0;
 });
 
 AddMethod("admin.files.rename", function($params){
+	$file = Security::String($params['file']);
+	
 	if(isAdminLogged())
 	{
 		$config = GetConfig();
@@ -288,7 +302,7 @@ AddMethod("admin.files.rename", function($params){
 		return 1;
 	}
 	
-	LogAction("Неудачная попытка переименовать файл → ".$params['file'], 1);
+	LogAction("Неудачная попытка переименовать файл → ".$file, 1);
 	return 0;
 });
 
@@ -315,10 +329,10 @@ AddMethod("admin.files.resize", function($params){
 //
 
 AddMethod("feedback.email.send", function($params){
-	$receivers = $params['receivers'];//Строка с перечислением через запятую
-	$author = $params['author'];
-	$subject = $params['subject'];
-	$text = $params['text'];
+	$receivers = Security::String($params['receivers']); // Строка с перечислением через запятую
+	$author = Security::String($params['author']);
+	$subject = Security::String($params['subject']);
+	$text = Security::String($params['text']);
 	
 	$receivers_arr = explode(",", $receivers);
 	
