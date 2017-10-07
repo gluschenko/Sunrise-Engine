@@ -455,7 +455,8 @@ function ResizeImage($path, $rate)
 	if(strpos($path, ".png") !== false)$source_image = imagecreatefrompng($path);
 	if(strpos($path, ".gif") !== false)$source_image = imagecreatefromgif($path);
 	
-	imagecopyresized($new_image, $source_image, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
+	//imagecopyresized($new_image, $source_image, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
+	imagecopyresampled($new_image, $source_image, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
 	
 	imagejpeg($new_image, $path);
 	
