@@ -443,6 +443,16 @@ function UrlOK($url)
 /** Изменяет размер изображения */
 function ResizeImage($path, $rate)
 {
+	$extension = function($path){
+		$path = strtolower($path);
+		$path = explode(".", $path);
+		if(sizeof($path) > 0)
+		{
+			return $path[sizeof($path) - 1];
+		}
+		return "";
+	};
+	
 	list($width, $height) = getimagesize($path);
 	
 	$new_width = $width * $rate;
@@ -451,14 +461,41 @@ function ResizeImage($path, $rate)
 	$new_image = imagecreatetruecolor($new_width, $new_height);
 	
 	$source_image;
-	if(strpos($path, ".jpg") !== false || strpos($path, ".jpeg") !== false)$source_image = imagecreatefromjpeg($path);
-	if(strpos($path, ".png") !== false)$source_image = imagecreatefrompng($path);
-	if(strpos($path, ".gif") !== false)$source_image = imagecreatefromgif($path);
+	
+	switch($extension($path))
+	{
+		case "jpg":
+		case "jpeg":
+			$source_image = imagecreatefromjpeg($path);
+			break;
+		case "png":
+			$source_image = imagecreatefrompng($path);
+			break;
+		case "gif":
+			$source_image = imagecreatefromgif($path);
+			break;
+	}
 	
 	//imagecopyresized($new_image, $source_image, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
-	imagecopyresampled($new_image, $source_image, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
+	if($source_image !== false) 
+		imagecopyresampled($new_image, $source_image, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
 	
-	imagejpeg($new_image, $path);
+	if($new_image !== false)
+	{
+		switch($extension($path))
+		{
+			case "jpg":
+			case "jpeg":
+				imagejpeg($new_image, $path);
+				break;
+			case "png":
+				imagepng($new_image, $path);
+				break;
+			case "gif":
+				imagegif($new_image, $path);
+				break;
+		}
+	}
 	
 	// ДНО, НЕ РАБОТАЕТ
 	/*$imagick = new Imagick($path);
