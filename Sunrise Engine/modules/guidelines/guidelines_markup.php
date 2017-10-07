@@ -42,6 +42,12 @@ Text",
 "Картинка на максимальную доступную ширину:<br/>
 <wide_image>/modules/guidelines/assets/img.jpg</wide_image>",
 
+"Приставка '_c' погрузит сжатую версию картинки, чтобы не мучить трафик:<br/>
+<center>
+	<image_c>/modules/guidelines/assets/img.jpg</image_c>
+	<image_c>/modules/guidelines/assets/img.jpg</image_c>
+</center>",
+
 "Баннерная картинка (800 x 250):<br/>
 <banner>/modules/guidelines/assets/img.jpg</banner>
 Маленький баннер (800 x 100):<br/>
