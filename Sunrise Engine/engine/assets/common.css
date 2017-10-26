@@ -626,7 +626,7 @@ body{
 }
 
 .wide_post_image{
-    max-width: 100%;
+    width: 100%;
     margin-top: 3px;
     margin-bottom: 3px;
     border-radius: 3px;
@@ -956,37 +956,37 @@ body{
 
 .border0 { /*серый*/
     border: solid 1px #202020 !important;
-    box-sizing: padding-box;
+    box-sizing: border-box;
 }
 
 .border1 { /*оранженый*/
     border: solid 1px #f39c11 !important;
-    box-sizing: padding-box;
+    box-sizing: border-box;
 }
 
 .border2 { /*зеленый*/
     border: solid 1px #2dcc70 !important;
-    box-sizing: padding-box;
+    box-sizing: border-box;
 }
 
 .border3 { /*белый*/
     border: solid 1px white !important;
-    box-sizing: padding-box;
+    box-sizing: border-box;
 }
 
 .border4 { /*красный*/
     border: solid 1px #e84c3d !important;
-    box-sizing: padding-box;
+    box-sizing: border-box;
 }
 
 .border5 { /*синий*/
     border: solid 1px #3598db !important;
-    box-sizing: padding-box;
+    box-sizing: border-box;
 }
 
 .border6 { /*серый*/
     border: solid 1px #ddd !important;
-    box-sizing: padding-box;
+    box-sizing: border-box;
 }
 
 /* Shadows */

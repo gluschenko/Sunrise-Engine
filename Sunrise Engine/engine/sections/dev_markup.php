@@ -288,27 +288,27 @@ function ScrollToFeature(obj, id)
 	<div style='border-bottom: solid #888 1px; padding: 20px;'>
 		<div class='title_text inner_center' style='padding-bottom: 20px;'>Разработчик</div>
 		<div style='width: 300px; margin: auto;'>
-			<a href='mailto://qugluschenko@gmail.com' target='_blank'>
+			<a href='mailto://alexander@gluschenko.net' target='_blank'>
 				<div style='height: 50px;'>
 					<div class='n_back4 ui_coin' style='float: left; background-image: url(/engine/assets/Email.png);'></div>
-					<div class='text fore4 ui_font' style='float: right; width: 250px;'>qugluschenko@gmail.com</div>
+					<div class='text fore4 ui_font' style='float: right; width: 250px;'>alexander@gluschenko.net</div>
 				</div>
 			</a>
 			<a href='https://github.com/gluschenko' target='_blank'>
 				<div style='height: 50px;'>
-					<div class='n_back4 ui_coin' style='float: left; background-image: url(/engine/assets/Web.png);'></div>
-					<div class='text fore4 ui_font' style='float: right; width: 250px;'>github.com/gluschenko</div>
+					<div class='n_back4 ui_coin' style='float: left; background-image: url(/engine/assets/img/social/github.png);'></div>
+					<div class='text fore4 ui_font' style='float: right; width: 250px;'>Gluschenko</div>
 				</div>
 			</a>
-			<a href='http://gluschenko.net' target='_blank'>
+			<a href='http://dev.gluschenko.net' target='_blank'>
 				<div style='height: 50px;'>
 					<div class='n_back4 ui_coin' style='float: left; background-image: url(/engine/assets/Web.png);'></div>
-					<div class='text fore4 ui_font' style='float: right; width: 250px;'>gluschenko.net</div>
+					<div class='text fore4 ui_font' style='float: right; width: 250px;'>Just Dev</div>
 				</div>
 			</a>
 		</div>
 	</div>
 	<div style='height: 50px;'></div>
-	<div class='text inner_center'>Все права защищены © 2016</div>
+	<div class='text inner_center'><s>Далеко не</s> все права защищены © <?php echo(GetYear(time())); ?></div>
 	<div style='height: 50px;'></div>
 </div>

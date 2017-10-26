@@ -26,9 +26,12 @@ $engine_config['settings'] = array(); //Настройки сайта
 //
 
 $engine_config['engine_name'] = "Sunrise Engine";
-$engine_config['version'] = "0.8.4";
+$engine_config['version'] = "0.8.5";
 
 $engine_config['change_log'] = array(
+	"0.8.5 (26.10.2017)",
+	"Мелкие изменения #2",
+	"",
 	"0.8.4 (7.10.2017)",
 	"Мелкие изменения",
 	"",

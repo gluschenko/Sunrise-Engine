@@ -55,7 +55,7 @@ EngineGraph = {
 		EngineGraph.Context = C.getContext("2d");
 		EngineGraph.Width = C.width;
 		EngineGraph.Height = C.height;
-		C.width = C.width;
+		//C.width = C.width;
 	},
 	CreateStructure: function(struct){
 		EngineGraph.Nodes = {};
@@ -90,6 +90,7 @@ EngineGraph = {
 	},
 	Texts: [],
 	Lines: [],
+	State: [],
 	Draw: function(time){
 		EngineGraph.ApplyCanvas(EngineGraph.Canvas.id);
 		//
@@ -169,9 +170,8 @@ EngineGraph = {
 		
 		//
 		
-		ctx.clearRect(0, 0, w, h);
-		ctx.fillStyle = "#222";
-		ctx.fillRect(0, 0, w, h);
+		//ctx.clearRect(0, 0, w, h);
+		
 		
 		var offsetX = w/2;
 		var offsetY = h/2;
@@ -186,45 +186,60 @@ EngineGraph = {
 		var DrawingOffsetX = offsetX;
 		var DrawingOffsetY = offsetY;
 
-		ctx.translate(DrawingOffsetX, DrawingOffsetY);
+		var state = [DrawingOffsetX, DrawingOffsetY, e.Zoom, e.Width, e.Height];
 
-		//
-		for(var i = 0; i < e.Lines.length; i++)
+		if(JSON.stringify(e.State) != JSON.stringify(state))
 		{
-			var A = calcPoint(e.Lines[i][0]);
-			var B = calcPoint(e.Lines[i][1]);
-			var color = e.Lines[i][2];
-			e.DrawLine(A, B, color);
-		}
-		//
-		for(var i = 0; i < e.Texts.length; i++)
-		{
-			var point = calcPoint(e.Texts[i][0]);
-			var color = e.Texts[i][3];
-			e.DrawCircle(point, 1.5, color);
-		}
-		//
-		var MouseX = e.mousePosition.x - w/2;
-		var MouseY = e.mousePosition.y - h/2;
-		var MaxDist = 100;
+			e.State = state;
+			//
+			ctx.fillStyle = "#222";
+			ctx.fillRect(0, 0, w, h);
+			ctx.translate(DrawingOffsetX, DrawingOffsetY);
 
-		for(var i = 0; i < e.Texts.length; i++)
-		{
-			var Point = calcPoint(e.Texts[i][0]);
-			var Text = e.Texts[i][1];
-			var Scale = e.Texts[i][2];
-			e.DrawText(Point, Text, Scale * e.Zoom);
+			//
+			for(var i = 0; i < e.Lines.length; i++)
+			{
+				var A = calcPoint(e.Lines[i][0]);
+				var B = calcPoint(e.Lines[i][1]);
+				var color = e.Lines[i][2];
+				e.DrawLine(A, B, color);
+			}
+			//
+			for(var i = 0; i < e.Texts.length; i++)
+			{
+				var point = calcPoint(e.Texts[i][0]);
+				var color = e.Texts[i][3];
+				e.DrawCircle(point, 1.5, color);
+			}
+			//
+			var MouseX = e.mousePosition.x - w/2;
+			var MouseY = e.mousePosition.y - h/2;
+			var MaxDist = 100;
+
+			for(var i = 0; i < e.Texts.length; i++)
+			{
+				var Point = calcPoint(e.Texts[i][0]);
+				var Text = e.Texts[i][1];
+				var Scale = e.Texts[i][2];
+				e.DrawText(Point, Text, Scale * e.Zoom);
+			}
+			//
+			ctx.translate(-DrawingOffsetX, -DrawingOffsetY);
+			//
+			e.FPSCount++;
+			//e.DrawText(e.Point(10, 30), e.FPSCountView + " FPS", 3);
 		}
+		
 		//
-		ctx.translate(-DrawingOffsetX, -DrawingOffsetY);
-		//
-		e.FPSCount++;
+		
 
 		//e.DrawText(e.Point(10, 40), e.clickPoint.x + ", " + e.clickPoint.y + " | " + e.mousePosition.x + ", " + e.mousePosition.y, 1);
 		//e.DrawCircle(e.clickPoint, 10);
 		//e.DrawCircle(e.mousePosition, 10);
 
 		window.requestAnimationFrame(e.Draw);
+
+
 		/*setTimeout(function(){
 			e.Draw();
 		}, 50);*/

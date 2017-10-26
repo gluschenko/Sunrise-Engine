@@ -45,7 +45,7 @@ _(____nm_______ /____\____
 	<link rel="stylesheet" href="/engine/assets/common.css" type="text/css" />
 	<link rel="stylesheet" href="/modules/boxed_template/assets/site.css" type="text/css" />
 	
-	<link rel="shortcut icon" href="<?php echo($section['icon'] != "" ? $section['icon'] : "/modules/boxed_template/favicon.ico");?>" type="image/x-icon"/>
+	<link rel="shortcut icon" href="<?php echo($section['icon'] != "" ? $section['icon'] : "favicon.ico");?>" type="image/x-icon"/>
 	
 	<script type="text/javascript" src="/engine/libs/jquery.js"></script>
 	
