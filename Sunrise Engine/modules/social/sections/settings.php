@@ -1,5 +1,0 @@
-<?php
-
-$section['logged'] = isLogged();
-
-?>

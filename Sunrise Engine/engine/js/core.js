@@ -1,4 +1,0 @@
-function TEST()
-{
-	return ":)";
-}

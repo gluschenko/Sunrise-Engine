@@ -1,4 +1,0 @@
-<?
-Draw(GetFeedbackScript());
-Draw(GetFeedbackMarkup());
-?>
