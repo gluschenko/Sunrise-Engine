@@ -1,0 +1,339 @@
+﻿/*Author: Alexander Gluschenko (20-06-2014, 15-07-2015, 1-05-2016)*/
+
+body{
+    background-color: #d4d5c9;
+    min-width: 320px;
+    margin: 0;
+}
+
+.head_box {
+    width: 1024px;
+    position: relative;
+    background-color: #ffffff;
+    margin: auto;
+    box-shadow: 0px 1px 2px rgba(6, 33, 63, .3), 0px 0px 5px rgba(255, 255, 255, 1) inset;
+    border-radius: 8px;
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.main_menu {
+    background-color: #ffffff;
+    height: 40px;
+    width: 100%;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    position: absolute;
+    bottom: 0px;
+}
+
+#LinesX{
+    display: block;
+    border-radius: 8px;
+}
+
+#LinesXParent{
+    position: absolute; 
+    top: 0px; 
+    left: 0px; 
+    width: 100%; 
+    height: 100%; 
+    z-index: 1;
+}
+
+@media screen and (max-width: 1034px) {
+    body{
+        background-image: none;
+        background-color: #eee;
+    }
+    
+    .head_box{
+        width: 100%;
+        border-radius: 0px;
+        box-shadow: none;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        border-bottom: solid #ccc 1px;
+    }
+    
+    .main_menu{
+        border-radius: 0px;
+    }
+
+    #LinesX{
+        border-radius: 0px;
+    }
+}
+
+/**/
+
+.header_button{
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 2px;
+    margin-right: 2px;
+    vertical-align: bottom;
+    box-shadow: 0px 1px 2px rgba(6, 33, 63, .3);
+}
+
+.vk_button{
+    background-repeat: no-repeat;
+    background-size: 30px;
+    background-image: url(img/vk_logo.png);
+    background-color: #5b7fa6;
+    background-position: center, center;
+    width: 40px;
+}
+
+.vk_button:hover{
+    background-color: #2b587a;
+}
+
+.board_button{
+    width: 140px;
+}
+
+.tool_menu_button{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-image: url(img/tool_menu.png);
+    background-size: 100%;
+    background-color: transparent;
+    display: none;
+}
+
+.header_tool_menu_button{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-image: url(img/header_tool_menu.png);
+    background-size: 100%;
+    background-color: transparent;
+    display: none;
+}
+
+.tool_menu_button:hover, .header_tool_menu_button:hover{
+    background-color: #eee;
+}
+
+@media screen and (max-width: 1034px) {
+    .tool_menu_button{
+        display: block;
+    }
+
+    .headmenu_button{
+        width: auto;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .header_tool_menu_button{
+        display: block;
+    }
+}
+
+
+@media screen and (max-width: 800px) {
+    .board_button{
+        background-repeat: no-repeat;
+        background-size: 30px;
+        background-image: url(img/board.png);
+        background-position: center, center;
+        width: 40px;
+        font-size: 0px;
+    }
+}
+
+/**/
+
+@media screen and (max-width: 1200px) {
+    .totop{
+        display: none !important;
+    }
+}
+
+/**/
+
+.logo {
+    width: 160px;
+    height: 160px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: auto;
+    margin-bottom: 10px;
+    background-image: url(logo/logo_600.png);
+}
+
+.header_text {
+    font-weight: bold;
+    text-shadow: 1px 1px 6px #333, 1px 1px 3px #333;
+    text-align: center;
+}
+
+@media screen and (max-width: 650px) {
+    .logo {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 0px;
+        margin-top: 50px;
+        display: inline-block;
+        vertical-align: bottom;
+    }
+
+    .header_text {
+        line-height: 60px;
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .logo {
+        margin-top: 70px;
+        width: 60px;
+        height: 60px;
+    }
+
+    .header_text {
+        line-height: 60px;
+        font-size: 16px;
+    }
+}
+
+/**/
+
+.sidebar_box{
+    margin-bottom: 10px;
+}
+
+.layout_box{
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
+}
+
+@media screen and (max-width: 700px) {
+    .header_menu_wrap{
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+        background-color: #fff;
+        z-index: 51;
+        display: none;
+    }
+
+    
+}
+
+@media screen and (max-width: 1034px) {
+    .responsive_content_box{
+        border-radius: 0px;
+        width: 100% !important;
+        margin-top: 0 !important;
+        margin-left: 0 !important;
+        box-shadow: none;
+        border-bottom: solid #ccc 1px;
+        display: block !important;
+    }
+
+    .layout_box{
+        display: block;
+    }
+
+    .left_sidebar_wrap{
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        height: 100%;
+        width: 240px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        background-color: #fff;
+        z-index: 50;
+        display: none;
+    }
+
+    .outer_menu_wrap_container{
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.3);
+        z-index: 49;
+        display: none;
+    }
+
+    .sidebar_box{
+        border-radius: 0px;
+        width: 100% !important;
+        box-shadow: none;
+        border-bottom: solid #ccc 1px;
+        margin-bottom: 0px;
+    }
+
+    .window, .small_window{
+        width: 100% !important;
+        margin: 0 !important;
+        top: 0 !important;
+        left: 0 !important;
+    }
+
+    .window_header_good, .window_header_bad {
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+    }
+}
+
+.zest{
+    position: absolute;
+    width: 160px;
+    height: 50px;
+    top: 20px;
+    right: 0px;
+    background-size: 100%;
+    background-image: url(img/zest.png);
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: 1s;
+}
+
+.zest:hover{
+    opacity: 1;
+}
+
+@media screen and (max-width: 700px) {
+    .zest
+    {
+        display: none;
+    }
+}
+
+/**/
+
+.blur_filter{
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+}
+
+/**/
+
+@font-face {
+  font-family: "Arial";
+  src: url(CorsicaLX-Regular.otf) format("truetype");
+}
+
+/**{
+    font-family: "CorsicaLX-Regular", Arial !important;
+}*/
+
+
+
