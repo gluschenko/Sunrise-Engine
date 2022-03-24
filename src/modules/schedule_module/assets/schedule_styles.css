@@ -1,0 +1,245 @@
+#schedule_hint_list .hint_list_body{
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	background-color: rgba(0, 0, 0, 0.9);
+	position: fixed;
+	bottom: 0px;
+	right: 20px;
+	width: 240px;
+	z-index: 10;
+}
+
+#schedule_hint_list .hint_list_header{
+	line-height: 40px;
+	text-align: center;
+	border-bottom: solid 1px #999;
+	cursor: pointer;
+}
+
+#schedule_hint_list .hint_list{
+	margin-top: 8px;
+	margin-bottom: 8px;
+	max-height: 350px;
+	overflow-y: auto;
+}
+
+#schedule_hint_list .hint_list_item{
+	line-height: 30px;
+	padding-left: 5px;
+	padding-right: 5px;
+	cursor: pointer;
+}
+
+#schedule_hint_list .hint_list_item:hover{
+	border-left: solid 2px #fff;
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+/**/
+
+.fullscreen_content{
+	position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+	z-index: 500;
+}
+
+.schedule_fullscreen_button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-image: url(/engine/assets/Fullscreen.png);
+	z-index: 110;
+}
+
+.schedule_scroll_left_button {
+    position: fixed;
+    bottom: 20px;
+    right: 140px;
+    background-image: url(/engine/assets/Left.png);
+	z-index: 110;
+}
+
+.schedule_scroll_right_button {
+    position: fixed;
+    bottom: 20px;
+    right: 80px;
+    background-image: url(/engine/assets/Right.png);
+	z-index: 110;
+}
+
+.content{
+	overflow-x: auto;
+	background-color: #fff;
+}
+
+.pairs_list{
+	/*padding: 10px;*/
+	min-width: 200px;
+	height: 200px;
+	border-bottom: solid 1px #ccc;
+}
+
+.pairs_list:nth-child(even){
+	background-color: rgba(230, 230, 230, 0.5);
+}
+
+.pairs_list:nth-child(odd){
+	background-color: rgba(210, 210, 210, 0.5);
+}
+
+.pair_label{
+	height: 30px;
+	margin-bottom: 3px;
+	position: relative;
+}
+
+.pair_number{
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	margin: 5px;
+	text-align: center;
+	border-radius: 5px;
+	position: absolute;
+}
+
+.pair_name{
+	line-height: 30px;
+	left: 30px;
+	position: absolute;
+	white-space: nowrap;
+}
+
+.room_number{
+	margin-top: 7px;
+    margin-bottom: 7px;
+	line-height: 16px;
+	border-radius: 4px;
+    padding-left: 4px;
+    padding-right: 4px;
+    position: absolute;
+	right: 5px;
+}
+
+.date_label{
+    width: 60px;
+    height: 60px;
+	text-align: center;
+	line-height: 60px;
+    border-radius: 8px;
+	margin: 10px;
+}
+
+.colored_ceil
+{
+	border-bottom: solid #fff 1px;
+}
+
+.group_name{
+	padding: 4px;
+	padding-left: 8px;
+	padding-right: 8px;
+	border-radius: 4px;
+	display: inline-block;
+}
+
+.schedule_tab{
+	width: auto;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-left: 1px;
+	margin-right: 1px;
+	margin-top: 1px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+	border-bottom: solid #fff 1px;
+	display: inline-block;
+}
+
+.group_link
+{
+	width: 200px;
+	height: 200px;
+	border-radius: 10px;
+	margin: 10px;
+	display: inline-block;
+	background-size: cover, cover;
+	background-position: center, center;
+	border: solid 1px #ccc;
+	position: relative;
+	overflow: hidden;
+}
+
+.group_link_back
+{
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	width: 200px;
+	height: 200px;
+	background-image: url(default_group_thumb.png);
+	background-size: cover, cover;
+	background-position: center, center;
+	z-index: 2;
+	transform: scale(1.2);
+}
+
+.group_link_title
+{
+	line-height: 50px;
+	width: 100%;
+	position: absolute;
+	bottom: 0px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	overflow: hidden;
+	text-shadow: 0px 0px 10px #333,0px 0px 5px #333,0px 0px 5px #333;
+	z-index: 3;
+}
+
+.group_link_title_middleback
+{
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	width: 200px;
+	height: 200px;
+	background-color: rgba(0, 0, 0, 0.2);
+	z-index: -1;
+}
+
+.group_link_title_back
+{
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	width: 200px;
+	height: 200px;
+	background-image: url(default_group_thumb.png);
+	background-size: cover, cover;
+	background-position: center, center;
+	filter: blur(10px);
+	-webkit-filter: blur(10px);
+	z-index: -2;
+	transform: scale(1.2);
+}
+
+.group_pairs_list
+{
+	width: 200px;
+	min-height: 250px;
+	border-radius: 8px;
+	border: solid #ccc 1px;
+	margin: 10px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.group_pairs_list_title
+{
+	line-height: 40px;
+	border-bottom: solid #ccc 1px;
+}
